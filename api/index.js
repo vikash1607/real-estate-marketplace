@@ -8,20 +8,29 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
 
-// mongoose.connect("mongodb://127.0.0.1:27017/mern-estate")
-mongoose.connect("mongodb+srv://vikash:vikash1@mern-estate.cxlcg29.mongodb.net/?retryWrites=true&w=majority&appName=mern-estate")
-const db = mongoose.connection;
 
-// Define event listeners for database connection
-db.on('connected', () => {
-    console.log('Connected to MongoDB server');
-});
-db.on('error', (err) => {
-    console.error('MongoDB connection error:', err);
-});
-db.on('disconnected', () => {
-    console.log('MongoDB disconnected');
-});
+mongoose
+  .connect(process.env.MONGO)
+  .then(() => {
+    console.log('Connected to MongoDB!');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+// mongoose.connect("mongodb://127.0.0.1:27017/mern-estate")
+// mongoose.connect("mongodb+srv://vikash:vikash1@mern-estate.cxlcg29.mongodb.net/?retryWrites=true&w=majority&appName=mern-estate")
+// const db = mongoose.connection;
+
+// // Define event listeners for database connection
+// db.on('connected', () => {
+//     console.log('Connected to MongoDB server');
+// });
+// db.on('error', (err) => {
+//     console.error('MongoDB connection error:', err);
+// });
+// db.on('disconnected', () => {
+//     console.log('MongoDB disconnected');
+// });
 
 // mongoose
 //   .connect(process.env.MONGO)
